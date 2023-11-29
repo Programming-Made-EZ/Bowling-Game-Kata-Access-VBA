@@ -9,7 +9,6 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Option Compare Database
 
-Private TotalScore As Integer
 Private Rolls(21) As Integer
 Private CurrentRoll As Integer
 
@@ -30,12 +29,16 @@ Public Function Score()
     FrameIndex = 0
    
     For Frame = 1 To 10
-        If IsSpare(FrameIndex) Then
+        If Rolls(FrameIndex) = 10 Then
+            Score = Score + 10 + Rolls(FrameIndex + 1) + Rolls(FrameIndex + 2)
+            FrameIndex = FrameIndex + 1
+        ElseIf IsSpare(FrameIndex) Then
             Score = Score + 10 + Rolls(FrameIndex + 2)
+            FrameIndex = FrameIndex + 2
         Else
             Score = Score + Rolls(FrameIndex) + Rolls(FrameIndex + 1)
+            FrameIndex = FrameIndex + 2
         End If
-        FrameIndex = FrameIndex + 2
     Next Frame
 End Function
 

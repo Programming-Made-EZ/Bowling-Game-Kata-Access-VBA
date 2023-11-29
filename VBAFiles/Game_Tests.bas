@@ -25,12 +25,24 @@ Private Sub Score_ShouldReturn20_WhenAllOnePinRolls()
 End Sub
 
 '@TestMethod
-Private Sub Foo()
+Private Sub Score_ShouldCalculateSpare_When10PinsInOneFrame()
     Set Game = New Game
     RollSpare
     Game.Roll 3
     RollMany 17, 0
     Assert.AreEqual 16, Game.Score
+End Sub
+
+'@TestMethod
+Private Sub Foo()
+    Set Game = New Game
+    
+    Game.Roll 10 'Strike
+    Game.Roll 3
+    Game.Roll 4
+    RollMany 16, 0
+    
+    Assert.AreEqual 24, Game.Score
 End Sub
 
 Private Sub RollMany(Rolls As Integer, Pins As Integer)
