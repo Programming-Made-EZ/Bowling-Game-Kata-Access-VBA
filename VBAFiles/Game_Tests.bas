@@ -34,10 +34,10 @@ Private Sub Score_ShouldCalculateSpare_When10PinsInOneFrame()
 End Sub
 
 '@TestMethod
-Private Sub Foo()
+Private Sub Score_ShouldCalculateStrike_When10PinsInOneRoll()
     Set Game = New Game
     
-    Game.Roll 10 'Strike
+    RollStrike
     Game.Roll 3
     Game.Roll 4
     RollMany 16, 0
@@ -55,4 +55,8 @@ End Sub
 Private Sub RollSpare()
     Game.Roll 5
     Game.Roll 5
+End Sub
+
+Private Sub RollStrike()
+    Game.Roll 10
 End Sub

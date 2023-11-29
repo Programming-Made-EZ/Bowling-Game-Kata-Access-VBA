@@ -29,19 +29,37 @@ Public Function Score()
     FrameIndex = 0
    
     For Frame = 1 To 10
-        If Rolls(FrameIndex) = 10 Then
-            Score = Score + 10 + Rolls(FrameIndex + 1) + Rolls(FrameIndex + 2)
+        Select Case True
+        Case IsStrike(FrameIndex)
+            Score = Score + StrikeBonus(FrameIndex)
             FrameIndex = FrameIndex + 1
-        ElseIf IsSpare(FrameIndex) Then
-            Score = Score + 10 + Rolls(FrameIndex + 2)
+        Case IsSpare(FrameIndex)
+            Score = Score + SpareBonus(FrameIndex)
             FrameIndex = FrameIndex + 2
-        Else
-            Score = Score + Rolls(FrameIndex) + Rolls(FrameIndex + 1)
+        Case Else
+            Score = Score + SumOfBallsInFrame(FrameIndex)
             FrameIndex = FrameIndex + 2
-        End If
+        End Select
     Next Frame
 End Function
 
 Private Function IsSpare(FrameIndex As Integer) As Boolean
     IsSpare = Rolls(FrameIndex) + Rolls(FrameIndex + 1) = 10
 End Function
+
+Private Function IsStrike(FrameIndex As Integer) As Boolean
+    IsStrike = Rolls(FrameIndex) = 10
+End Function
+
+Private Function SpareBonus(FameIndex As Integer)
+    SpareBonus = 10 + Rolls(FrameIndex + 2)
+End Function
+
+Private Function StrikeBonus(FrameIndex As Integer)
+    StrikeBonus = 10 + Rolls(FrameIndex + 1) + Rolls(FrameIndex + 2)
+End Function
+
+Private Function SumOfBallsInFrame(FrameIndex As Integer)
+    SumOfBallsInFrame = Rolls(FrameIndex) + Rolls(FrameIndex + 1)
+End Function
+
