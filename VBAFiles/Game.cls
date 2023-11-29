@@ -9,10 +9,12 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Option Compare Database
 
-Public Sub Roll(Value As Integer)
+Private TotalScore As Integer
 
+Public Sub Roll(Value As Integer)
+    TotalScore = TotalScore + Value
 End Sub
 
 Public Function Score()
-    Score = 0
+    Score = TotalScore
 End Function

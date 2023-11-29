@@ -9,7 +9,7 @@ Option Private Module
 
     Private Assert As New Rubberduck.AssertClass
 
-'@TestMethod("Uncategorized")
+'@TestMethod
 Private Sub Score_ShouldReturn0_WhenGutterballGame()
     Dim Game As New Game
     Dim i As Integer
@@ -17,6 +17,18 @@ Private Sub Score_ShouldReturn0_WhenGutterballGame()
     For i = 1 To 20
         Game.Roll 0
     Next i
-    Assert.AreEqual 0, Game.Score
     
+    Assert.AreEqual 0, Game.Score
+End Sub
+
+'@TestMethod
+Private Sub Score_ShouldReturn20_WhenAllOnePinRolls()
+    Dim Game As New Game
+    Dim i As Integer
+    
+    For i = 1 To 20
+        Game.Roll 1
+    Next i
+    
+    Assert.AreEqual 20, Game.Score
 End Sub
