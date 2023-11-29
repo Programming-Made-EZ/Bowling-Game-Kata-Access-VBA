@@ -10,11 +10,32 @@ Attribute VB_Exposed = False
 Option Compare Database
 
 Private TotalScore As Integer
+Private Rolls(21) As Integer
+Private CurrentRoll As Integer
+
+Public Sub Class_Initialize()
+    CurrentRoll = 0
+End Sub
+
 
 Public Sub Roll(Value As Integer)
-    TotalScore = TotalScore + Value
+    Rolls(CurrentRoll) = Value
+    CurrentRoll = CurrentRoll + 1
 End Sub
 
 Public Function Score()
-    Score = TotalScore
+    Dim FrameIndex As Integer
+    Dim Frame As Integer
+    
+    Score = 0
+    FrameIndex = 0
+   
+    For Frame = 1 To 10
+        If Rolls(FrameIndex) + Rolls(FrameIndex + 1) = 10 Then
+            Score = Score + 10 + Rolls(FrameIndex + 2)
+        Else
+            Score = Score + Rolls(FrameIndex) + Rolls(FrameIndex + 1)
+        End If
+        FrameIndex = FrameIndex + 2
+    Next Frame
 End Function

@@ -32,3 +32,19 @@ Private Sub Score_ShouldReturn20_WhenAllOnePinRolls()
     
     Assert.AreEqual 20, Game.Score
 End Sub
+
+'@TestMethod
+Private Sub Foo()
+    Dim Game As New Game
+    Dim i As Integer
+    
+    Game.Roll 5
+    Game.Roll 5 'Spare
+    Game.Roll 3
+        
+    For i = 1 To 17
+        Game.Roll 0
+    Next i
+    
+    Assert.AreEqual 16, Game.Score
+End Sub
