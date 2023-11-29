@@ -17,7 +17,6 @@ Public Sub Class_Initialize()
     CurrentRoll = 0
 End Sub
 
-
 Public Sub Roll(Value As Integer)
     Rolls(CurrentRoll) = Value
     CurrentRoll = CurrentRoll + 1
@@ -31,11 +30,15 @@ Public Function Score()
     FrameIndex = 0
    
     For Frame = 1 To 10
-        If Rolls(FrameIndex) + Rolls(FrameIndex + 1) = 10 Then
+        If IsSpare(FrameIndex) Then
             Score = Score + 10 + Rolls(FrameIndex + 2)
         Else
             Score = Score + Rolls(FrameIndex) + Rolls(FrameIndex + 1)
         End If
         FrameIndex = FrameIndex + 2
     Next Frame
+End Function
+
+Private Function IsSpare(FrameIndex As Integer) As Boolean
+    IsSpare = Rolls(FrameIndex) + Rolls(FrameIndex + 1) = 10
 End Function
