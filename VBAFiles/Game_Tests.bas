@@ -45,6 +45,14 @@ Private Sub Score_ShouldCalculateStrike_When10PinsInOneRoll()
     Assert.AreEqual 24, Game.Score
 End Sub
 
+'@TestMethod
+Private Sub Score_ShouldReturn300_WhenPerfectGame()
+    Set Game = New Game
+    
+    RollMany 12, 10
+    Assert.AreEqual 300, Game.Score
+End Sub
+
 Private Sub RollMany(Rolls As Integer, Pins As Integer)
     Dim i As Integer
     For i = 1 To Rolls
