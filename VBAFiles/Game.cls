@@ -51,7 +51,7 @@ Private Function IsStrike(FrameIndex As Integer) As Boolean
     IsStrike = Rolls(FrameIndex) = 10
 End Function
 
-Private Function SpareBonus(FameIndex As Integer)
+Private Function SpareBonus(FrameIndex As Integer)
     SpareBonus = 10 + Rolls(FrameIndex + 2)
 End Function
 
