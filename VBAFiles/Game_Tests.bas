@@ -7,7 +7,7 @@ Option Compare Database
 Option Explicit
 Option Private Module
 
-    Private Assert As New Rubberduck.AssertClass
+Private Assert As New Rubberduck.AssertClass
 
 '@TestMethod("Uncategorized")
 Private Sub Foo()
