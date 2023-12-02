@@ -7,11 +7,15 @@ Option Compare Database
 Option Explicit
 Option Private Module
 
-    Private Assert As New Rubberduck.AssertClass
+Private Assert As New Rubberduck.AssertClass
+
+'@TestInitialize
+Private Sub TestInitialize()
+    Set Game = New Game
+End Sub
 
 '@TestMethod
 Private Sub Score_ShouldReturn0_WhenGutterballGame()
-    Dim Game As New Game
     Dim i As Integer
     
     For i = 1 To 20
@@ -23,7 +27,6 @@ End Sub
 
 '@TestMethod
 Private Sub Score_ShouldReturn20_WhenAllOnePinRolls()
-    Dim Game As New Game
     Dim i As Integer
     
     For i = 1 To 20
@@ -35,7 +38,6 @@ End Sub
 
 '@TestMethod
 Private Sub Foo()
-    Dim Game As New Game
     Dim i As Integer
     
     Game.Roll 5
