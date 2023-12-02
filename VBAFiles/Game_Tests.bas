@@ -49,8 +49,6 @@ Private Sub Foo()
 End Sub
 
 '@TestMethod
-
-'@TestMethod
 Private Sub Score_ShouldReturn300_WhenPerfectGame()
     Set Game = New Game
     
