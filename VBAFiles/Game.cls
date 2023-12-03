@@ -9,57 +9,51 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Option Compare Database
 
-Private Rolls(21) As Integer
+Private TotalScore As Integer
+Private Rolls(20) As Integer
 Private CurrentRoll As Integer
 
-Public Sub Class_Initialize()
-    CurrentRoll = 0
-End Sub
 
-Public Sub Roll(Value As Integer)
-    Rolls(CurrentRoll) = Value
+Public Sub Roll(NumberOfPins As Integer)
+    Rolls(CurrentRoll) = NumberOfPins
     CurrentRoll = CurrentRoll + 1
 End Sub
 
-Public Function Score()
-    Dim FrameIndex As Integer
-    Dim Frame As Integer
+Public Function Score() As Integer
+    Dim Fram As Integer
+    Dim RollIndex As Integer
     
-    Score = 0
-    FrameIndex = 0
-   
     For Frame = 1 To 10
-        Select Case True
-        Case IsStrike(FrameIndex)
-            Score = Score + StrikeBonus(FrameIndex)
-            FrameIndex = FrameIndex + 1
-        Case IsSpare(FrameIndex)
-            Score = Score + SpareBonus(FrameIndex)
-            FrameIndex = FrameIndex + 2
-        Case Else
-            Score = Score + SumOfBallsInFrame(FrameIndex)
-            FrameIndex = FrameIndex + 2
-        End Select
+        If IsStrike(RollIndex) Then
+            Score = Score + StrikeBonus(RollIndex)
+            RollIndex = RollIndex + 1
+        ElseIf IsSpare(RollIndex) Then
+            Score = Score + SpareBonus(RollIndex)
+            RollIndex = RollIndex + 2
+        Else
+            Score = Score + SumOfBallsInFrame(RollIndex)
+            RollIndex = RollIndex + 2
+        End If
+        
     Next Frame
 End Function
 
-Private Function IsSpare(FrameIndex As Integer) As Boolean
-    IsSpare = Rolls(FrameIndex) + Rolls(FrameIndex + 1) = 10
+Private Function IsSpare(RollIndex As Integer) As Boolean
+    IsSpare = Rolls(RollIndex) + Rolls(RollIndex + 1) = 10
 End Function
 
-Private Function IsStrike(FrameIndex As Integer) As Boolean
-    IsStrike = Rolls(FrameIndex) = 10
+Private Function IsStrike(RollIndex As Integer) As Boolean
+    IsStrike = Rolls(RollIndex) = 10
 End Function
 
-Private Function SpareBonus(FrameIndex As Integer)
-    SpareBonus = 10 + Rolls(FrameIndex + 2)
+Private Function SpareBonus(RollIndex As Integer) As Integer
+    SpareBonus = 10 + Rolls(RollIndex + 2)
 End Function
 
-Private Function StrikeBonus(FrameIndex As Integer)
-    StrikeBonus = 10 + Rolls(FrameIndex + 1) + Rolls(FrameIndex + 2)
+Private Function StrikeBonus(RollIndex As Integer) As Integer
+    StrikeBonus = 10 + Rolls(RollIndex + 1) + Rolls(RollIndex + 2)
 End Function
 
-Private Function SumOfBallsInFrame(FrameIndex As Integer)
-    SumOfBallsInFrame = Rolls(FrameIndex) + Rolls(FrameIndex + 1)
+Private Function SumOfBallsInFrame(RollIndex As Integer) As Integer
+    SumOfBallsInFrame = Rolls(RollIndex) + Rolls(RollIndex + 1)
 End Function
-
